@@ -16,20 +16,12 @@ for i in range(len(reader.pages)):
     cleanText = ''
     for line in textWorking:
 #        line=line.rstrip() #removes spaces and line breaks
-        cleanText = (cleanText+line)  #creates one huge long spaceless string for each page
+        cleanText = (cleanText+line)  #creates one huge long string for each page
     with open('newExtract.txt', 'a') as currentFile:
         currentFile.write('Currently on page '+(str(i+1))+':  '+cleanText)
+        #appends to previous file, suggest to change file name with each use
 #    print('Currently on page',i+1,':', cleanText)   
 print(Path.cwd(), currentFile)
-
-
-
-''' figure out how to:
-
-1. clean up extracted text line breaks
-2.  save extracted text to a file
-Done 3.  add file opener prompt
-    '''
 
 # extract only text oriented up
 #print(page.extract_text(0))
