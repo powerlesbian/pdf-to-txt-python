@@ -1,6 +1,7 @@
 from pypdf import PdfReader
 from pathlib import Path
-#import os
+
+#a py script that extracts each page of a PDF into separate txt files named from 1 onwards.
 
 
 fname = input("Enter .pdf file: ")
@@ -13,13 +14,13 @@ reader = PdfReader(fname)
 for i in range(len(reader.pages)):
     page = reader.pages[i]
     textWorking = page.extract_text()
-    cleanText = ''
-    for line in textWorking:
+#    cleanText = ''
+#    for line in textWorking:  #add below stuff to do or find by looping line by line
 #        line=line.rstrip() #removes spaces and line breaks
-        cleanText = (cleanText+line)  #creates one huge long string for each page
-    with open('newExtract.txt', 'a') as currentFile:
-        currentFile.write('Currently on page '+(str(i+1))+':  '+cleanText)
-        #appends to previous file, suggest to change file name with each use
+#        cleanText = (cleanText+line)  #creates one huge long string for each page
+    with open(str(i+1)+'pdf.txt', 'w') as currentFile:
+        currentFile.write('Currently on page '+(str(i+1))+':  '+textWorking)
+        #change new name and to 'a' for appends and delete str(i)+ if prefer single file, suggest to change file name with each use
 #    print('Currently on page',i+1,':', cleanText)   
 print(Path.cwd(), currentFile)
 
