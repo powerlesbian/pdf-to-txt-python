@@ -1,5 +1,6 @@
 from pypdf import PdfReader
-#import re
+from pathlib import Path
+#import os
 
 
 fname = input("Enter .pdf file: ")
@@ -14,9 +15,12 @@ for i in range(len(reader.pages)):
     textWorking = page.extract_text()
     cleanText = ''
     for line in textWorking:
-        line=line.rstrip() #removes spaces and line breaks
+#        line=line.rstrip() #removes spaces and line breaks
         cleanText = (cleanText+line)  #creates one huge long spaceless string for each page
-    print('Currently on page',i+1,':', cleanText)    
+    with open('newExtract.txt', 'a') as currentFile:
+        currentFile.write('Currently on page '+(str(i+1))+':  '+cleanText)
+#    print('Currently on page',i+1,':', cleanText)   
+print(Path.cwd(), currentFile)
 
 
 
