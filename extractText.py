@@ -1,5 +1,5 @@
 from pypdf import PdfReader
-import re
+#import re
 
 
 fname = input("Enter .pdf file: ")
@@ -11,11 +11,14 @@ reader = PdfReader(fname)
 
 for i in range(len(reader.pages)):
     page = reader.pages[i]
+    textWorking = page.extract_text()
+    cleanText = ''
+    for line in textWorking:
+        line=line.rstrip() #removes spaces and line breaks
+        cleanText = (cleanText+line)  #creates one huge long spaceless string for each page
+    print('Currently on page',i+1,':', cleanText)    
 
-    for line in page:
-        line=line.rstrip()
-#        if line.startswith('[0-9]+'):
-        print(line.extract_text())
+
 
 ''' figure out how to:
 
